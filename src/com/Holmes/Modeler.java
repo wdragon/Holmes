@@ -1,4 +1,8 @@
-package com.Holmes;
+package com.holmes;
+
+import com.holmes.map.AccelerometerData;
+import com.holmes.map.GPSData;
+import com.holmes.photo.PhotoData;
 
 public class Modeler {
 	

@@ -1,4 +1,6 @@
-package com.Holmes;
+package com.holmes;
+
+import com.Holmes.R;
 
 import android.app.Activity;
 import android.os.Bundle;
