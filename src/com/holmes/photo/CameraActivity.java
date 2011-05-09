@@ -7,6 +7,8 @@ import java.io.IOException;
 import com.holmes.R;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.hardware.Camera;
 import android.hardware.Camera.PictureCallback;
 import android.hardware.Camera.ShutterCallback;
@@ -21,7 +23,20 @@ public class CameraActivity extends Activity {
   private final static String TAG = CameraActivity.class.getName();
   private final static boolean DEBUG = true;
 
+  private final static String START_CAMERA = "Start Camera";
+
   private Preview mPreview;
+  private Listener mListener;
+
+  public static interface Listener {
+    public void onPhoto(PhotoData photo);
+  }
+
+  public static void takePhotos(Context context, Listener listener) {
+    Intent startCamera = new Intent(START_CAMERA);
+    startCamera.setClass(context, CameraActivity.class);
+    context.startActivity(startCamera);
+  }
 
   ShutterCallback mShutterCB = new ShutterCallback() {
     @Override
@@ -50,6 +65,9 @@ public class CameraActivity extends Activity {
         out = new FileOutputStream(filename);
         out.write(data);
         out.close();
+        PhotoData photo = new PhotoData();
+        photo.fileName = filename;
+        mListener.onPhoto(photo);
       } catch (FileNotFoundException e) {
         Log.e("TestCamera", e.getMessage());
       } catch (IOException e) {
