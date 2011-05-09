@@ -8,21 +8,20 @@ import com.google.android.maps.MapView;
 
 public class MapGPSActivity extends MapActivity {
 
-	private MapView mapView;
+  private MapView mapView;
 
-    /** Called when the activity is first created. */
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
-        mapView = (MapView) findViewById(R.id.mapview);
-        mapView.setBuiltInZoomControls(true);
-    }
-	
-	@Override
-	protected boolean isRouteDisplayed() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
+  /** Called when the activity is first created. */
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.gpsmap);
+    mapView = (MapView) findViewById(R.id.mapview);
+    mapView.setBuiltInZoomControls(true);
+  }
+    
+  @Override
+  protected boolean isRouteDisplayed() {
+    // TODO Auto-generated method stub
+    return false;
+  }
 }
