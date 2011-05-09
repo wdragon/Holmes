@@ -34,10 +34,6 @@ public class Preview extends SurfaceView implements SurfaceHolder.Callback {
     if (DEBUG) {
       Log.v(TAG, "surfaceChanged");
     }
-    Camera.Parameters params = mCamera.getParameters();
-    params.setPreviewSize(width, height);
-    mCamera.setParameters(params);
-    mCamera.startPreview();
   }
 
   @Override
@@ -47,7 +43,12 @@ public class Preview extends SurfaceView implements SurfaceHolder.Callback {
     }
     mCamera = Camera.open();
     Camera.Parameters params = mCamera.getParameters();
-    params.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
+    for (String mode : params.getSupportedFocusModes()) {
+      if (mode.equals(Camera.Parameters.FOCUS_MODE_AUTO)) {
+        params.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
+        break;
+      }
+    }
     mCamera.setParameters(params);
 
     try {
