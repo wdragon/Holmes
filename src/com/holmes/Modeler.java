@@ -1,12 +1,39 @@
 package com.holmes;
 
+import android.content.Context;
+
 import com.holmes.map.AccelerometerData;
 import com.holmes.map.GPSData;
 import com.holmes.photo.PhotoData;
+import com.holmes.storage.LocalStorage;
 
 public class Modeler {
 	
-	protected Configuration config;
+  /**
+   * Called by MainActivity at the start of the application.
+   */
+  public static void createInstance(Context context) {
+    modeler = new Modeler(context);
+  }
+  private static Modeler modeler = null;
+
+  /** 
+   * Called everywhere to get the modeler.
+   */
+  public static Modeler getInstance() {
+    return modeler;
+  }
+
+  
+  private Configuration config;
+	private Context context;
+	private LocalStorage localStorage;
+	
+	private Modeler(Context context) {
+    this.config = new Configuration();
+	  this.context = context;
+	  this.localStorage = new LocalStorage(context);
+	}
 	
 	public boolean startCollectData(Configuration config) {		
 		return true;		
