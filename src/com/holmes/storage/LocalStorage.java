@@ -10,21 +10,10 @@ import android.content.Context;
  */
 public class LocalStorage {
 
-  /**
-   * Singleton.
-   */
-  private static LocalStorage instance = null; 
-  public static LocalStorage getInstance(Context context) {
-    if (instance == null) {
-      instance = new LocalStorage(context);
-    }
-    return instance;
-  }
-
   // The actual sqlite database.
   private LocalDatabaseHelper helper;
   
-  private LocalStorage(Context context) {
+  public LocalStorage(Context context) {
     this.helper = new LocalDatabaseHelper(context);
   }
   
