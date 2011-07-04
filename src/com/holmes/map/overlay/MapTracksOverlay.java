@@ -19,7 +19,7 @@ public class MapTracksOverlay extends Overlay {
   private ArrayList<GeoPoint> mTrackGeoPoints = null;
 
   public MapTracksOverlay(Context context, ArrayList<GeoPoint> gps) {
-	super();
+    super();
     mContext = context;
     mTrackGeoPoints = gps;
   }
@@ -45,5 +45,5 @@ public class MapTracksOverlay extends Overlay {
       canvas.drawLine(last_point.x, last_point.y, point.x,point.y, paint);      
     }      
     return super.draw(canvas, mapView, shadow, when);
-  }	
+  }    
 }
